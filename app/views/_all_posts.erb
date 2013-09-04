@@ -1,0 +1,7 @@
+<ul>
+  <% @posts.each do |post| %>
+  <li class="post_title"><%= post.title %></li>
+  <li class="post_email"><%= post.users.first.email %></li>
+  <% end %>
+
+</ul>
