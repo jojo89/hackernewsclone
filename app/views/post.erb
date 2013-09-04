@@ -1,0 +1,9 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<h4>Written By</h4>
+<p><%= @post.author.email %></p>
+<%if @post.author.id == session[:user_id] %>
+  <a href="/posts/<%= @post.id %>/edit">Edit Post</a>
+  <a href="/posts/<%= @post.id %>/edit">Delete Post</a>
+<% end %>
+

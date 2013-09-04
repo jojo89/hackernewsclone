@@ -1,7 +1,9 @@
 <ul>
   <% @posts.each do |post| %>
-  <li class="post_title"><%= post.title %></li>
-  <li class="post_email"><%= post.users.first.email %></li>
+  <a href='/posts/<%= post.id %>'> <li class="post_title"><%= post.title %></li></a>
+  <li class="post_email"><%= post.author.email %></li>
+    <% if session[:user_id] == post.author.id %>
+      <a href='/posts/<%= post.id %>/edit'> Edit </a>
+    <% end %>
   <% end %>
-
 </ul>
