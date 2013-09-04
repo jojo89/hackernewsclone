@@ -8,6 +8,8 @@ end
 
 get '/posts/:id' do
   @post= Post.find(params[:id])
+  @comment = Comment.where(post_id: params[:id])
+  p @comment
   erb :post
 end
 
@@ -30,6 +32,12 @@ post '/posts/:id' do
   @post = Post.find(params[:id])
   @post.update_attributes(params[:post])
   redirect "/home"
+end
+
+post 'posts/:id/delete' do
+  @post = Post.find(params[:id])
+  @post.destroy
+  redirect '/home'
 end
 
 
