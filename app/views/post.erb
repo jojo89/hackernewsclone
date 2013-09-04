@@ -13,6 +13,6 @@
   <input type="submit">
 </form>
 <% @comment.each do |comment| %>
-  <p><%= comment.body %></p>
+  <p><%= comment.body %></p><span> <%= comment.user.email %></span>
 <% end %>
 

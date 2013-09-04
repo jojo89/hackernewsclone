@@ -18,6 +18,16 @@ get '/posts/:id/edit' do
   erb :edit_post
 end
 
+get '/posts/:id/delete' do
+  @post = Post.find(params[:id])
+  if @post.author.id == session[:user_id]
+    @post.destroy
+    redirect '/home'
+  else
+    redirect '/'
+  end
+end
+
 # POSTS ======================================
 
 post '/create_post' do
@@ -32,12 +42,6 @@ post '/posts/:id' do
   @post = Post.find(params[:id])
   @post.update_attributes(params[:post])
   redirect "/home"
-end
-
-post 'posts/:id/delete' do
-  @post = Post.find(params[:id])
-  @post.destroy
-  redirect '/home'
 end
 
 
