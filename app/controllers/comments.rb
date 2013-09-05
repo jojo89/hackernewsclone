@@ -1,6 +1,6 @@
 post '/posts/:id/comments' do
   p = Post.find(params[:id])
-  u = User.find(session[:user_id])
+  u = User.find(current_user)
   @comment = Comment.new(params[:comment])
   @comment.post = p
   @comment.user = u

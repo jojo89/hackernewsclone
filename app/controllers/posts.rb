@@ -20,9 +20,9 @@ end
 
 get '/posts/:id/delete' do
   @post = Post.find(params[:id])
-  if @post.author.id == session[:user_id]
+  if @post.author.id == current_user
     @post.destroy
-    redirect '/home'
+    redirect '/'
   else
     redirect '/'
   end
@@ -32,7 +32,7 @@ end
 
 post '/create_post' do
   new_post = Post.new(params[:post])
-  user = User.find(session[:user_id])
+  user = User.find(current_user)
   new_post.author = user
   new_post.save
   redirect "/posts/#{new_post.id}"
@@ -41,7 +41,7 @@ end
 post '/posts/:id' do
   @post = Post.find(params[:id])
   @post.update_attributes(params[:post])
-  redirect "/home"
+  redirect "/"
 end
 
 

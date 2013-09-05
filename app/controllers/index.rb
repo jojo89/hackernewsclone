@@ -4,15 +4,6 @@ get '/' do
   erb :index
 end
 
-get '/home' do
-	if session[:user_id]
-		@posts = Post.all
-	  erb :home
-  else
-    redirect "/"
-	end
-end
-
 get '/logout' do
 	session.clear
 	redirect "/"

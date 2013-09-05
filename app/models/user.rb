@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  validates :email, presence: true, uniqueness: true, format: { with: /\w+\@.+\.\w{2,}/ }
+  validates :password, length: { minimum: 2 } 
+
   has_many :posts
   has_many :comments
   # Remember to create a migration!

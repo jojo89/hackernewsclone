@@ -2,5 +2,12 @@
   <h1>Welcome to Hacker News</h1>
   <p>Today's Top Posts</p>
  		<%= erb :_all_posts %>
-  <a href='/login'>Login</a>
+
+	  <% if session[:user_id] %>
+	    <a href="/create_post">Create a Post</a>
+	 		<a href="/logout">Logout</a>
+	 	<% else %>
+	 		<a href='/login'>Login</a> 
+	  	<a href='/create_user'>Create Account</a>
+ 		<% end %>
 </div>
